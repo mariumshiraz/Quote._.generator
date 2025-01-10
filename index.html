@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quote of the Day</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="quote-box">
+        <h2>Quote of the Day</h2>
+        <blockquote id="quote">Loading...</blockquote>
+        <span id="author">Loading...</span>
+
+        <div>
+            <button onclick="getquote()">New Quote</button>
+            <button onclick="tweet()">
+                <img src="twitter-removebg-preview.png" alt="Twitter Icon">
+                Tweet
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Array of quotes
+        const quotes = [
+            { content: "The best way to predict the future is to invent it.", author: "Alan Kay" },
+            { content: "Life is 10% what happens to us and 90% how we react to it.", author: "Charles R. Swindoll" },
+            { content: "Your time is limited, so don't waste it living someone else's life.", author: "Steve Jobs" },
+            { content: "The purpose of our lives is to be happy.", author: "Dalai Lama" },
+            { content: "In the middle of every difficulty lies opportunity.", author: "Albert Einstein" }
+        ];
+
+        const quote = document.getElementById("quote");
+        const author = document.getElementById("author");
+
+        // Function to display a random quote
+        function getquote() {
+            const randomIndex = Math.floor(Math.random() * quotes.length);
+            const randomQuote = quotes[randomIndex];
+            quote.innerHTML = randomQuote.content;
+            author.innerHTML = `— ${randomQuote.author}`;
+        }
+
+        // Initial call to display the first quote
+        getquote();
+
+        // Function to tweet the current quote
+        function tweet() {
+            const tweetText = encodeURIComponent(`${quote.innerHTML} — ${author.innerHTML}`);
+            window.open(`https://twitter.com/intent/tweet?text=${tweetText}`, "Tweet Window", "width=600,height=300");
+        }
+    </script>
+</body>
+
+</html>
